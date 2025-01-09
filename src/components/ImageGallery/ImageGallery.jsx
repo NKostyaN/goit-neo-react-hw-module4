@@ -1,12 +1,18 @@
-const ImageGallery = () => {
+import ImageCard from "../ImageCard/ImageCard";
+import { nanoid } from "nanoid";
+
+const ImageGallery = ({ hits, showModal }) => {
+  const onImageClick = (data) => {
+    showModal(data, true);
+  };
+
   return (
-    <ul>
-      {/* Набір елементів списку із зображеннями */}
-      <li>
-        <div>
-          <img src="" alt="" />
-        </div>
-      </li>
+    <ul className="gallery">
+      {hits.map((el) => (
+        <li key={nanoid()}>
+          <ImageCard card={el} imageClicked={onImageClick} />
+        </li>
+      ))}
     </ul>
   );
 };
